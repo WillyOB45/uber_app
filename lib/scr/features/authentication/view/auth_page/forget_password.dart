@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/register_page.dart';
-import 'package:uber_project/scr/features/authentication/view/sigin_page.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 

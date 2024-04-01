@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/sigin_page.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});

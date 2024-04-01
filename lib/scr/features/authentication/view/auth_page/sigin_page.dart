@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/fingerprint.dart';
-import 'package:uber_project/scr/features/authentication/view/forget_password.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/fingerprint.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/forget_password.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/homePage.dart';
-import 'package:uber_project/scr/features/authentication/view/register_page.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 
@@ -103,7 +104,7 @@ class _signInState extends State<signIn> {
               ),
               myButton(
                   onTap: () {
-                    Get.off(const fingerPrint(),
+                    Get.off(const loginFingerprint(),
                         transition: Transition.cupertino);
                   },
                   text: "sign in"),
