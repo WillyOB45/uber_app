@@ -48,7 +48,7 @@ class _forgetPasswordState extends State<forgetPassword> {
               Container(
                   height: 100,
                   child: const Text(
-                    "UBER",
+                    "RideSwift",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 60,
@@ -83,12 +83,11 @@ class _forgetPasswordState extends State<forgetPassword> {
 
               // email textfield
               myTextfiled(
-                controller: _emailController,
-                icon: Icons.email_outlined,
-                keyboardType: TextInputType.emailAddress,
-                obscureText: false,
-                title: "Enter your email",
-              ),
+                  controller: _emailController,
+                  icon: Icons.email_outlined,
+                  keyboardType: TextInputType.emailAddress,
+                  obscureText: false,
+                  title: "Enter your email"),
 
               // login button
               const SizedBox(
@@ -98,6 +97,11 @@ class _forgetPasswordState extends State<forgetPassword> {
                   onTap: () {
                     Get.to(const signIn(),
                         transition: Transition.leftToRightWithFade);
+                    Get.snackbar(
+                        "please,check your email for password reset.", '',
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.grey.shade700);
                   },
                   text: "send"),
               const SizedBox(

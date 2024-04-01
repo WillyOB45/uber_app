@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/view/fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/sigin_page.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
@@ -49,7 +50,7 @@ class _registerPageState extends State<registerPage> {
               Container(
                   height: 100,
                   child: const Text(
-                    "UBER",
+                    "RideSwift",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 60,
@@ -92,7 +93,12 @@ class _registerPageState extends State<registerPage> {
               const SizedBox(
                 height: 20,
               ),
-              myButton(onTap: () {}, text: "click to register"),
+              myButton(
+                  onTap: () {
+                    Get.offAll(const fingerPrint(),
+                        transition: Transition.rightToLeft);
+                  },
+                  text: "click to register"),
               const SizedBox(
                 height: 10,
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/view/fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/forget_password.dart';
 import 'package:uber_project/scr/features/authentication/view/homePage.dart';
 import 'package:uber_project/scr/features/authentication/view/register_page.dart';
@@ -50,7 +51,7 @@ class _signInState extends State<signIn> {
               Container(
                   height: 100,
                   child: const Text(
-                    "UBER",
+                    "RideSwift",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 60,
@@ -102,9 +103,10 @@ class _signInState extends State<signIn> {
               ),
               myButton(
                   onTap: () {
-                    Get.to(const homePage(), transition: Transition.cupertino);
+                    Get.off(const fingerPrint(),
+                        transition: Transition.cupertino);
                   },
-                  text: "LOG IN"),
+                  text: "sign in"),
               const SizedBox(
                 height: 10,
               ),

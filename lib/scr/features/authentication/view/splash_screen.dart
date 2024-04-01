@@ -28,9 +28,10 @@ class _splashScreenState extends State<splashScreen> {
       backgroundColor: Colors.black,
       body: Center(
         child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-          FadeAnimatedText("U B E R",
+          FadeAnimatedText("RideSwift",
               textStyle: const TextStyle(
                   fontSize: 30,
+                  letterSpacing: 3,
                   color: Colors.white,
                   fontWeight: FontWeight.bold))
         ]),
