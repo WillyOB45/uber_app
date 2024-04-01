@@ -27,6 +27,7 @@ class _splashScreenState extends State<splashScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
+        // app name
         child: AnimatedTextKit(repeatForever: true, animatedTexts: [
           FadeAnimatedText("RideSwift",
               textStyle: const TextStyle(

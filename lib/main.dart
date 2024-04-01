@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/splash_screen.dart';
+import 'package:uber_project/scr/features/authentication/view/other_screens/splash_screen.dart';
 
 void main() {
   runApp(const myApp());

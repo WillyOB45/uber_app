@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/homePage.dart';
+import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
 
 class fingerPrint extends StatefulWidget {
   const fingerPrint({super.key});
