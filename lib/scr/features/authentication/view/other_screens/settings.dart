@@ -40,7 +40,7 @@ class _settingPageState extends State<settingPage> {
               //general
               const Text(
                 "General",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 textAlign: TextAlign.start,
               ),
               lisTiles(
@@ -49,7 +49,7 @@ class _settingPageState extends State<settingPage> {
                 ),
                 title: const Text(
                   "Edit profile",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ),
                 trailing: const Icon(
                   size: 14,
@@ -63,7 +63,7 @@ class _settingPageState extends State<settingPage> {
               // account
               const Text(
                 "Account",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 textAlign: TextAlign.start,
               ),
 
@@ -73,7 +73,7 @@ class _settingPageState extends State<settingPage> {
                 ),
                 title: const Text(
                   "account history",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ),
                 trailing: const Icon(
                   size: 14,
@@ -86,7 +86,7 @@ class _settingPageState extends State<settingPage> {
                 ),
                 title: const Text(
                   "account statement",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ),
                 trailing: const Icon(
                   size: 14,
@@ -94,7 +94,6 @@ class _settingPageState extends State<settingPage> {
                 ),
               ),
 
-              // preferences
               const SizedBox(
                 height: 20,
               ),
@@ -102,7 +101,7 @@ class _settingPageState extends State<settingPage> {
               // prefernces
               const Text(
                 "Preferences",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 textAlign: TextAlign.start,
               ),
 
@@ -112,7 +111,7 @@ class _settingPageState extends State<settingPage> {
                   ),
                   title: const Text(
                     "login notification",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   trailing: Switch(
                     value: isSwitched,
@@ -124,7 +123,7 @@ class _settingPageState extends State<settingPage> {
                   ),
                   title: const Text(
                     "transaction notification",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   trailing: Switch(
                     value: isSwitched,
@@ -136,7 +135,7 @@ class _settingPageState extends State<settingPage> {
                   ),
                   title: const Text(
                     "dark mode",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   trailing: Switch(
                     value: isSwitched,
@@ -149,7 +148,7 @@ class _settingPageState extends State<settingPage> {
               ),
               const Text(
                 "Security",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 textAlign: TextAlign.start,
               ),
               lisTiles(
@@ -158,7 +157,7 @@ class _settingPageState extends State<settingPage> {
                 ),
                 title: const Text(
                   "change password",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ),
                 trailing: const Icon(
                   size: 14,
@@ -171,7 +170,7 @@ class _settingPageState extends State<settingPage> {
                 ),
                 title: const Text(
                   "enable face scan",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ),
                 trailing: const Icon(
                   size: 14,
@@ -179,7 +178,41 @@ class _settingPageState extends State<settingPage> {
                 ),
               ),
 
-              //
+              //customer services
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "contact us",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                textAlign: TextAlign.start,
+              ),
+              lisTiles(
+                leading: const Icon(
+                  Icons.email_outlined,
+                ),
+                title: const Text(
+                  "rideSwift@gmail.com",
+                  style: TextStyle(fontSize: 15),
+                ),
+                trailing: const Icon(
+                  size: 14,
+                  Icons.arrow_forward_ios,
+                ),
+              ),
+              lisTiles(
+                leading: const Icon(
+                  Icons.phone,
+                ),
+                title: const Text(
+                  "+239031318411",
+                  style: TextStyle(fontSize: 15),
+                ),
+                trailing: const Icon(
+                  size: 14,
+                  Icons.arrow_forward_ios,
+                ),
+              ),
             ],
           ),
         ),

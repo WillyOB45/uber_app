@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uber_project/scr/features/authentication/view/other_screens/home_pagemain.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/settings.dart';
 
 class homePage extends StatefulWidget {
@@ -14,9 +15,7 @@ class _homePageState extends State<homePage> {
 
   // screens page
   final List<Widget> _screens = [
-    Container(
-      color: Colors.amber,
-    ),
+    const homeMain(),
     Container(
       color: Colors.green,
     ),
@@ -55,9 +54,9 @@ class _homePageState extends State<homePage> {
                 label: "route"),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.person_3,
+                  Icons.settings,
                 ),
-                label: "profile")
+                label: "settings")
           ]),
       body: _screens[currentIndex],
     );
