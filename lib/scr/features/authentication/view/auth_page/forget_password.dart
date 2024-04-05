@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
@@ -94,7 +95,16 @@ class _forgetPasswordState extends State<forgetPassword> {
                 height: 20,
               ),
               myButton(
-                  onTap: () {
+                  onTap: () async {
+                    try {
+                      await FirebaseAuth.instance.sendPasswordResetEmail(
+                          email: _emailController.text.trim());
+                    } catch (e) {
+                      Get.snackbar("$e", '',
+                          colorText: Colors.white,
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.grey.shade700);
+                    }
                     Get.to(const signIn(),
                         transition: Transition.leftToRightWithFade);
                     Get.snackbar(

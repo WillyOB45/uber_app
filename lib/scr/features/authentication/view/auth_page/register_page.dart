@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
+import 'package:uber_project/utilis/loading_widget.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 
@@ -17,6 +19,16 @@ class _registerPageState extends State<registerPage> {
   final _fullnameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    _fullnameController.dispose();
+    _emailController.dispose();
+    _passwordcontroller.dispose();
+    super.dispose();
+  }
+
+  final FirebaseController _authcontroller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +107,11 @@ class _registerPageState extends State<registerPage> {
               ),
               myButton(
                   onTap: () {
-                    Get.offAll(const fingerPrint(),
-                        transition: Transition.rightToLeft);
+                    // _authcontroller.isloading.value
+                    //     ? loadingWidget()
+                    //     : _authcontroller.createUser();
+                    // Get.offAll(const fingerPrint(),
+                    //     transition: Transition.rightToLeft);
                   },
                   text: "click to register"),
               const SizedBox(

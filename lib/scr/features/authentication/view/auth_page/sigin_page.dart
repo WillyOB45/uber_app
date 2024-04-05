@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/forget_password.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
+import 'package:uber_project/utilis/loading_widget.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 
@@ -19,6 +21,16 @@ class _signInState extends State<signIn> {
   // user controller
   final _emailController = TextEditingController();
   final _passwordcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordcontroller.dispose();
+    super.dispose();
+  }
+
+  // firebase controller
+  final FirebaseController _authcontroller = Get.put(FirebaseController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +71,7 @@ class _signInState extends State<signIn> {
                         letterSpacing: 3,
                         color: Colors.white),
                   )),
+
               const SizedBox(
                 height: 160,
               ),
@@ -76,7 +89,7 @@ class _signInState extends State<signIn> {
               myTextfiled(
                   title: "Enter password",
                   controller: _passwordcontroller,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.emailAddress,
                   obscureText: true,
                   icon: Icons.security),
               const SizedBox(
@@ -102,12 +115,15 @@ class _signInState extends State<signIn> {
               const SizedBox(
                 height: 20,
               ),
+
               myButton(
                   onTap: () {
-                    Get.offAll(const loginFingerprint(),
-                        transition: Transition.cupertino);
+                    _authcontroller.siginwithEmailandPassword(
+                        _emailController.text.trim(),
+                        _passwordcontroller.text.trim());
                   },
                   text: "sign in"),
+
               const SizedBox(
                 height: 10,
               ),
