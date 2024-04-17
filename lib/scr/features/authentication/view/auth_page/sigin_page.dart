@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
@@ -21,6 +22,11 @@ class _signInState extends State<signIn> {
   // user controller
   final _emailController = TextEditingController();
   final _passwordcontroller = TextEditingController();
+
+  // final FirebaseAuth user = FirebaseAuth.instance.currentUser;
+
+  //loading state
+  bool isloading = false;
 
   @override
   void dispose() {
@@ -118,10 +124,22 @@ class _signInState extends State<signIn> {
 
               myButton(
                   onTap: () {
-                    loadingWidget();
-                    _authcontroller.siginwithEmailandPassword(
-                        _emailController.text.trim(),
-                        _passwordcontroller.text.trim());
+                    if (_emailController.text.isEmail &&
+                        _passwordcontroller.text.isNotEmpty) {
+                      _authcontroller.siginwithEmailandPassword(
+                          _emailController.text, _passwordcontroller.text);
+                      Get.snackbar(
+                          snackPosition: SnackPosition.BOTTOM,
+                          'successfully log in',
+                          '');
+                      loadingWidget();
+                      Get.offAll(const homePage());
+                    } else {
+                      Get.snackbar(
+                          snackPosition: SnackPosition.BOTTOM,
+                          'sign in unsuccessfully',
+                          'please, check your details');
+                    }
                   },
                   text: "sign in"),
 

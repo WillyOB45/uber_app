@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
+import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
+// import 'package:uber_project/scr/features/authentication/view/auth_page/register_page.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
@@ -16,6 +17,8 @@ class forgetPassword extends StatefulWidget {
 class _forgetPasswordState extends State<forgetPassword> {
   // user controller
   final _emailController = TextEditingController();
+
+  final FirebaseController _controller = Get.put(FirebaseController());
 
   @override
   Widget build(BuildContext context) {
@@ -90,28 +93,26 @@ class _forgetPasswordState extends State<forgetPassword> {
                   obscureText: false,
                   title: "Enter your email"),
 
-              // login button
+              // send button
               const SizedBox(
                 height: 20,
               ),
               myButton(
-                  onTap: () async {
-                    try {
-                      await FirebaseAuth.instance.sendPasswordResetEmail(
-                          email: _emailController.text.trim());
-                    } catch (e) {
-                      Get.snackbar("$e", '',
-                          colorText: Colors.white,
+                  onTap: () {
+                    if (_emailController.text.isNotEmpty &&
+                        _emailController.text.isEmail) {
+                      _controller.resetPassword(_emailController.text);
+                      Get.snackbar(
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.grey.shade700);
+                          'Reset code sent!',
+                          'please, check your email');
+                      Get.offAll(const signIn());
+                    } else {
+                      Get.snackbar(
+                          snackPosition: SnackPosition.BOTTOM,
+                          'verify email unsuccessfully',
+                          'please, check your details');
                     }
-                    Get.to(const signIn(),
-                        transition: Transition.leftToRightWithFade);
-                    Get.snackbar(
-                        "please,check your email for password reset.", '',
-                        colorText: Colors.white,
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.grey.shade700);
                   },
                   text: "send"),
               const SizedBox(

@@ -12,9 +12,8 @@ class FirebaseController extends GetxController {
   // firebase signin
   Future<void> siginwithEmailandPassword(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
-       Get.to(const loginFingerprint(), transition: Transition.rightToLeft);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.to(const loginFingerprint(), transition: Transition.rightToLeft);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Error",
@@ -59,25 +58,11 @@ class FirebaseController extends GetxController {
   Future<void> resetPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (error) {
       Get.snackbar(
-        "verification code successfully sent!",
-        "",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
-        colorText: Colors.white,
-        forwardAnimationCurve: Curves.bounceIn,
-        duration: const Duration(seconds: 3),
-      );
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar(
-        "$e",
-        "",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
-        colorText: Colors.white,
-        forwardAnimationCurve: Curves.bounceIn,
-        duration: const Duration(seconds: 3),
-      );
+          snackPosition: SnackPosition.BOTTOM,
+          'user does not exit',
+          'please, check your details');
     }
   }
 
