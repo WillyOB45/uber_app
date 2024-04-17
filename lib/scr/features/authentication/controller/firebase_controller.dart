@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
-import 'package:uber_project/utilis/loading_widget.dart';
 
 class FirebaseController extends GetxController {
   // instance of auth
@@ -13,13 +12,9 @@ class FirebaseController extends GetxController {
   // firebase signin
   Future<void> siginwithEmailandPassword(String email, String password) async {
     try {
-      if (isloading.value = true) {
-        loadingWidget();
-        await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
             email: email, password: password);
-      } else if (isloading.value = false) {
-        Get.to(const loginFingerprint(), transition: Transition.rightToLeft);
-      }
+       Get.to(const loginFingerprint(), transition: Transition.rightToLeft);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Error",

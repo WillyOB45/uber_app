@@ -118,6 +118,7 @@ class _signInState extends State<signIn> {
 
               myButton(
                   onTap: () {
+                    loadingWidget();
                     _authcontroller.siginwithEmailandPassword(
                         _emailController.text.trim(),
                         _passwordcontroller.text.trim());
