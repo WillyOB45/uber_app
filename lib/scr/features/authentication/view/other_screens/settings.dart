@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/utilis/listiles.dart';
 
 class settingPage extends StatefulWidget {
@@ -11,6 +14,8 @@ class settingPage extends StatefulWidget {
 class _settingPageState extends State<settingPage> {
   //switch state
   bool isSwitched = false;
+  // firebase controller
+  final FirebaseController _authcontroller = Get.put(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,21 +225,27 @@ class _settingPageState extends State<settingPage> {
 
               // login out
               const Text(
-                "contact us",
+                "log out",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 textAlign: TextAlign.start,
               ),
-              lisTiles(
-                leading: const Icon(
-                  Icons.logout_outlined,
-                ),
-                title: const Text(
-                  "log out",
-                  style: TextStyle(fontSize: 15),
-                ),
-                trailing: const Icon(
-                  size: 14,
-                  Icons.arrow_forward_ios,
+              GestureDetector(
+                onTap: () {
+                  _authcontroller.siginOut();
+                  Get.to(const signIn());
+                },
+                child: lisTiles(
+                  leading: const Icon(
+                    Icons.logout_outlined,
+                  ),
+                  title: const Text(
+                    "log out",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  trailing: const Icon(
+                    size: 14,
+                    Icons.arrow_forward_ios,
+                  ),
                 ),
               ),
             ],

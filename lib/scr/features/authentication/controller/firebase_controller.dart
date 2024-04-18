@@ -73,14 +73,7 @@ class FirebaseController extends GetxController {
   Future<void> siginOut() async {
     await _auth.signOut();
     Get.snackbar(
-      "successfully log out",
-      "",
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.black,
-      colorText: Colors.white,
-      forwardAnimationCurve: Curves.bounceIn,
-      duration: const Duration(seconds: 3),
-    );
+        snackPosition: SnackPosition.BOTTOM, 'log out successfully', '');
   }
 }
 
