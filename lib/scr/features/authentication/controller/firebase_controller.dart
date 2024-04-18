@@ -2,10 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseController extends GetxController {
   // instance of auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // firestore instance
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   RxBool isloading = false.obs;
 
@@ -80,3 +83,7 @@ class FirebaseController extends GetxController {
     );
   }
 }
+
+// upload user details
+
+Future<void> uploadUser() async {}

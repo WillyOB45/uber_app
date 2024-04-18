@@ -213,6 +213,30 @@ class _settingPageState extends State<settingPage> {
                   Icons.arrow_forward_ios,
                 ),
               ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              // login out
+              const Text(
+                "contact us",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                textAlign: TextAlign.start,
+              ),
+              lisTiles(
+                leading: const Icon(
+                  Icons.logout_outlined,
+                ),
+                title: const Text(
+                  "log out",
+                  style: TextStyle(fontSize: 15),
+                ),
+                trailing: const Icon(
+                  size: 14,
+                  Icons.arrow_forward_ios,
+                ),
+              ),
             ],
           ),
         ),
