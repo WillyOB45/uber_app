@@ -98,10 +98,10 @@ class _forgetPasswordState extends State<forgetPassword> {
                 height: 20,
               ),
               myButton(
-                  onTap: () {
-                    if (_emailController.text.isNotEmpty &&
-                        _emailController.text.isEmail) {
-                      _controller.resetPassword(_emailController.text);
+                  onTap: () async {
+                    bool isverifed =
+                        await _controller.resetPassword();
+                    if (isverifed) {
                       Get.snackbar(
                           snackPosition: SnackPosition.BOTTOM,
                           'Reset code sent!',
@@ -125,3 +125,14 @@ class _forgetPasswordState extends State<forgetPassword> {
     );
   }
 }
+
+//  if (_emailController.text.isNotEmpty &&
+//                         _emailController.text.isEmail) {
+//                       _controller.resetPassword(_emailController.text);
+                      
+//                     } else {
+//                       Get.snackbar(
+//                           snackPosition: SnackPosition.BOTTOM,
+//                           'verify email unsuccessfully',
+//                           'please, check your details');
+//                     }

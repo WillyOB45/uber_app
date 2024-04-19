@@ -5,6 +5,8 @@ import 'package:uber_project/scr/features/authentication/view/auth_page/login_fi
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseController extends GetxController {
+  final _emailController = TextEditingController();
+
   // instance of auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // firestore instance
@@ -58,9 +60,12 @@ class FirebaseController extends GetxController {
   }
 
   // firebase reset password
-  Future<void> resetPassword(String email) async {
+  Future<b> resetPassword() async {
+    bool isverifed = false;
     try {
-      await _auth.sendPasswordResetEmail(email: email);
+      if(isverifed == true){
+        await _auth.sendPasswordResetEmail(email: _emailController.text);
+      } 
     } on FirebaseAuthException catch (error) {
       Get.snackbar(
           snackPosition: SnackPosition.BOTTOM,
