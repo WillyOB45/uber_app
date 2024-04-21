@@ -8,21 +8,25 @@ import 'package:uber_project/utilis/loading_widget.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 
-class forgetPassword extends StatefulWidget {
-  const forgetPassword({super.key});
+class ForgetPassword extends StatefulWidget {
+  const ForgetPassword({super.key});
 
   @override
-  State<forgetPassword> createState() => _forgetPasswordState();
+  State<ForgetPassword> createState() => _ForgetPasswordState();
 }
 
-class _forgetPasswordState extends State<forgetPassword> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   // user controller
   final _emailController = TextEditingController();
 
   final FirebaseController _controller = Get.put(FirebaseController());
 
   //loading State
-  bool isLoading = false;
+  bool isLoading = true;
+
+  // void loadingMethod() {
+  //   isLoading = !isLoading;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,24 +106,24 @@ class _forgetPasswordState extends State<forgetPassword> {
                 height: 20,
               ),
 
-              isLoading
-                  ? loadingWidget()
-                  : myButton(
-                      onTap: () async {
-                        if (_emailController.text.isNotEmpty) {
-                          _controller.resetPassword(_emailController.text);
-                          Get.snackbar(
-                              snackPosition: SnackPosition.BOTTOM,
-                              'verify email successfully sent',
-                              '');
-                        } else {
-                          Get.snackbar(
-                              snackPosition: SnackPosition.BOTTOM,
-                              'verify email unsuccessfully',
-                              'please, check your details');
-                        }
-                      },
-                      text: "send"),
+              myButton(
+                  onTap: () async {
+                    loadingWidget();
+                    if (_emailController.text.isNotEmpty) {
+                      _controller.resetPassword(_emailController.text);
+                      Get.snackbar(
+                          snackPosition: SnackPosition.BOTTOM,
+                          'verify email successfully sent',
+                          '');
+                      Get.to(const signIn());
+                    } else {
+                      Get.snackbar(
+                          snackPosition: SnackPosition.BOTTOM,
+                          'verify email unsuccessfully',
+                          'please, check your details');
+                    }
+                  },
+                  text: "send"),
               const SizedBox(
                 height: 10,
               ),

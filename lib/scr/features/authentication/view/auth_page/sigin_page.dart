@@ -110,7 +110,7 @@ class _signInState extends State<signIn> {
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(const forgetPassword());
+                      Get.to(const ForgetPassword());
                     },
                     child: const Text(
                       "forget passsword?",
@@ -128,7 +128,8 @@ class _signInState extends State<signIn> {
                 myButton(
                     onTap: () {
                       if (_emailController.text.isEmail &&
-                          _passwordcontroller.text.isNotEmpty) {
+                          _passwordcontroller.text.isNotEmpty &&
+                          _authcontroller.isLogin.value) {
                         _authcontroller.siginwithEmailandPassword(
                             _emailController.text, _passwordcontroller.text);
                         Get.snackbar(
@@ -143,6 +144,13 @@ class _signInState extends State<signIn> {
                             'sign in unsuccessfully',
                             'please, check your details');
                       }
+                      Obx(() {
+                        if (_authcontroller.isloading.value) {
+                          return loadingWidget();
+                        } else {
+                          return const signIn();
+                        }
+                      });
                     },
                     text: "sign in"),
 

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
@@ -7,16 +8,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseController extends GetxController {
   // instance of auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // firestore instance
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   RxBool isloading = false.obs;
+  RxBool isLogin = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        isLogin.value = true;
+      } else {
+        isLogin.value = false;
+      }
+    });
+  }
 
   // firebase signin
   Future<void> siginwithEmailandPassword(String email, String password) async {
+    isloading.value = true;
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.to(const loginFingerprint(), transition: Transition.rightToLeft);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Error",
@@ -27,6 +39,8 @@ class FirebaseController extends GetxController {
         forwardAnimationCurve: Curves.bounceIn,
         duration: const Duration(seconds: 3),
       );
+    } finally {
+      isloading.value = false;
     }
   }
 
@@ -60,12 +74,15 @@ class FirebaseController extends GetxController {
   // firebase reset password
   Future<void> resetPassword(String email) async {
     try {
+      isloading.value == true;
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (error) {
       Get.snackbar(
           snackPosition: SnackPosition.BOTTOM,
           'user does not exit',
           'please, check your details');
+    } finally {
+      isloading.value == false;
     }
   }
 
@@ -79,4 +96,11 @@ class FirebaseController extends GetxController {
 
 // upload user details
 
-Future<void> uploadUser() async {}
+// Future<void> uploadUser() async {
+//   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+//   try{
+//     _firestore.collection("user").doc(FirebaseAuth.instance.currentUser.uid).set({
+      
+//     })
+//   }
+// }
