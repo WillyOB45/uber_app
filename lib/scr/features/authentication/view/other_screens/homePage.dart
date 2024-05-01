@@ -34,6 +34,7 @@ class _homePageState extends State<homePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
           onTap: (index) => bottomNavBar(index),
           currentIndex: currentIndex,
           showUnselectedLabels: true,

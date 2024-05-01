@@ -27,6 +27,7 @@ class FirebaseController extends GetxController {
   // firebase signin
   Future<void> siginwithEmailandPassword(String email, String password) async {
     isloading.value = true;
+    isLogin.value = true;
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {

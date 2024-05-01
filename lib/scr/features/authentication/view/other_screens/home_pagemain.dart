@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class homeMain extends StatefulWidget {
   const homeMain({super.key});
@@ -9,10 +10,13 @@ class homeMain extends StatefulWidget {
 }
 
 class _homeMainState extends State<homeMain> {
+  void _getfromcamera() async {
+    XFile? PickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final User user = FirebaseAuth.instance.currentUser!;
-    // String useremail = user?.email ?? "unknow";
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: Center(
@@ -21,7 +25,12 @@ class _homeMainState extends State<homeMain> {
             SizedBox(
               height: 200,
             ),
-            Text(user.email.toString())
+            GestureDetector(
+              onTap: () => _getfromcamera(),
+              child: CircleAvatar(
+                child: Icon(Icons.camera_alt_outlined),
+              ),
+            )
           ],
         ),
       ),

@@ -127,29 +127,29 @@ class _signInState extends State<signIn> {
 
                 myButton(
                     onTap: () async {
-                      if (_emailController.text.isNotEmpty &&
-                          _passwordcontroller.text.isNotEmpty &&
-                          _authcontroller.isLogin.value) {
-                        await _authcontroller.siginwithEmailandPassword(
-                            _emailController.text, _passwordcontroller.text);
-                        Get.snackbar(
-                            snackPosition: SnackPosition.BOTTOM,
-                            'successfully log in',
-                            '');
-                        Get.offAll(const homePage());
-                      } else {
-                        Get.snackbar(
-                            snackPosition: SnackPosition.BOTTOM,
-                            'sign in unsuccessfully',
-                            'please, check your details');
-                      }
-                      Obx(() {
-                        if (_authcontroller.isloading.value) {
-                          return loadingWidget();
-                        } else {
-                          return const signIn();
-                        }
-                      });
+                      // if (_emailController.text.isEmpty &&
+                      //     _passwordcontroller.text.isNotEmpty &&
+                      //     _authcontroller.isLogin.value) {
+                      //   await _authcontroller.siginwithEmailandPassword(
+                      //       _emailController.text, _passwordcontroller.text);
+                      //   Get.snackbar(
+                      //       snackPosition: SnackPosition.BOTTOM,
+                      //       'successfully log in',
+                      //       '');
+                      Get.offAll(const homePage());
+                      // } else {
+                      //   Get.snackbar(
+                      //       snackPosition: SnackPosition.BOTTOM,
+                      //       'sign in unsuccessfully',
+                      //       'please, check your details');
+                      // }
+                      // Obx(() {
+                      //   if (_authcontroller.isloading.value) {
+                      //     return loadingWidget();
+                      //   } else {
+                      //     return const signIn();
+                      //   }
+                      // });
                     },
                     text: "sign in"),
 

@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^6.2.1
   loading_animation_widget: ^1.2.1
   double_back_to_exit: ^1.0.3
+  image_picker: ^1.0.8
 
 dev_dependencies:
   flutter_test:
