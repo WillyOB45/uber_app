@@ -126,17 +126,16 @@ class _signInState extends State<signIn> {
                 ),
 
                 myButton(
-                    onTap: () {
-                      if (_emailController.text.isEmail &&
+                    onTap: () async {
+                      if (_emailController.text.isNotEmpty &&
                           _passwordcontroller.text.isNotEmpty &&
                           _authcontroller.isLogin.value) {
-                        _authcontroller.siginwithEmailandPassword(
+                        await _authcontroller.siginwithEmailandPassword(
                             _emailController.text, _passwordcontroller.text);
                         Get.snackbar(
                             snackPosition: SnackPosition.BOTTOM,
                             'successfully log in',
                             '');
-                        loadingWidget();
                         Get.offAll(const homePage());
                       } else {
                         Get.snackbar(

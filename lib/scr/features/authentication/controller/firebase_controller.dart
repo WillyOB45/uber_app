@@ -29,7 +29,7 @@ class FirebaseController extends GetxController {
     isloading.value = true;
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       Get.snackbar(
         "Error",
         "fail to sign in $e",
