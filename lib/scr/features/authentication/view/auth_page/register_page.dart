@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
-import 'package:uber_project/scr/features/authentication/view/auth_page/fingerprint.dart';
+// import 'package:uber_project/scr/features/authentication/view/auth_page/fingerprint.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
-import 'package:uber_project/utilis/loading_widget.dart';
+// import 'package:uber_project/utilis/loading_widget.dart';
 import 'package:uber_project/widgets/my_button.dart';
 import 'package:uber_project/widgets/my_textfield.dart';
 
@@ -28,7 +28,7 @@ class _registerPageState extends State<registerPage> {
     super.dispose();
   }
 
-  final FirebaseController _authcontroller = Get.find();
+  final FirebaseController _authcontroller = Get.put(FirebaseController());
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class _registerPageState extends State<registerPage> {
               myTextfiled(
                   title: "Enter password",
                   controller: _passwordcontroller,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.emailAddress,
                   obscureText: true,
                   icon: Icons.security),
               const SizedBox(
@@ -107,6 +107,10 @@ class _registerPageState extends State<registerPage> {
               ),
               myButton(
                   onTap: () {
+                    _authcontroller.sigupwithEmailandPassword(
+                        _emailController.text,
+                        _passwordcontroller.text,
+                        _fullnameController.text);
                     // _authcontroller.isloading.value
                     //     ? loadingWidget()
                     //     : _authcontroller.createUser();

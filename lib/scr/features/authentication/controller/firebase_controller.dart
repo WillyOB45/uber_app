@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
+import 'package:uber_project/utilis/loading_widget.dart';
 
 class FirebaseController extends GetxController {
   // instance of auth
@@ -27,13 +29,21 @@ class FirebaseController extends GetxController {
   // firebase signin
   Future<void> siginwithEmailandPassword(String email, String password) async {
     isloading.value = true;
-    isLogin.value = true;
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      if (email.isNotEmpty && password.isNotEmpty) {
+        isLogin.value = true;
+
+        Get.offAll(const homePage());
+        Get.snackbar(
+            snackPosition: SnackPosition.BOTTOM, 'successfully log in', '');
+      } else {
+        isLogin.value = false;
+      }
     } catch (e) {
       Get.snackbar(
         "Error",
-        "fail to sign in $e",
+        "fail to sign in, please check your creditenials ",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
@@ -46,29 +56,32 @@ class FirebaseController extends GetxController {
   }
 
   // firebase signup
-  Future<void> sigupwithEmailandPassword(String email, String password) async {
+  Future<void> sigupwithEmailandPassword(
+      String email, String password, String username) async {
+    isloading.value = true;
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      Get.snackbar(
-        "user successfully created!",
-        "",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
-        colorText: Colors.white,
-        forwardAnimationCurve: Curves.bounceIn,
-        duration: const Duration(seconds: 3),
-      );
-    } on FirebaseAuthException catch (e) {
+      if (email.isNotEmpty && password.isNotEmpty && username.isNotEmpty) {
+        isLogin.value = true;
+        Get.offAll(const homePage());
+        Get.snackbar(
+            snackPosition: SnackPosition.BOTTOM, 'successfully log in', '');
+      } else {
+        isLogin.value = true;
+      }
+    } catch (e) {
       Get.snackbar(
         "Error",
-        "fail to sign up $e",
+        "fail to sign in, please check your creditenials ",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
         forwardAnimationCurve: Curves.bounceIn,
         duration: const Duration(seconds: 3),
       );
+    } finally {
+      isloading.value = false;
     }
   }
 

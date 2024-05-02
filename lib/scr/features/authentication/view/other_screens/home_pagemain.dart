@@ -10,6 +10,7 @@ class homeMain extends StatefulWidget {
 }
 
 class _homeMainState extends State<homeMain> {
+  User? user = FirebaseAuth.instance.currentUser;
   void _getfromcamera() async {
     XFile? PickedFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
@@ -30,7 +31,8 @@ class _homeMainState extends State<homeMain> {
               child: CircleAvatar(
                 child: Icon(Icons.camera_alt_outlined),
               ),
-            )
+            ),
+            Text(user!.email.toString())
           ],
         ),
       ),
