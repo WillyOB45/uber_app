@@ -107,21 +107,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
 
               myButton(
-                  onTap: () async {
-                    loadingWidget();
-                    if (_emailController.text.isNotEmpty) {
-                      _controller.resetPassword(_emailController.text);
-                      Get.snackbar(
-                          snackPosition: SnackPosition.BOTTOM,
-                          'verify email successfully sent',
-                          '');
-                      Get.to(const signIn());
-                    } else {
-                      Get.snackbar(
-                          snackPosition: SnackPosition.BOTTOM,
-                          'verify email unsuccessfully',
-                          'please, check your details');
-                    }
+                  onTap: () {
+                    _controller.resetPassword(_emailController.text);
                   },
                   text: "send"),
               const SizedBox(
@@ -134,3 +121,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     );
   }
 }
+
+//  loadingWidget();
+//                     if (_emailController.text.isNotEmpty) {
+//                       _
+//                     } else {
+//                       Get.snackbar(
+//                           snackPosition: SnackPosition.BOTTOM,
+//                           'verify email unsuccessfully',
+//                           'please, check your details');
+//                     }

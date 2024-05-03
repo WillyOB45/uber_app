@@ -124,16 +124,12 @@ class _signInState extends State<signIn> {
                 const SizedBox(
                   height: 20,
                 ),
-
-                isloading
-                    ? loadingWidget()
-                    : myButton(
-                        onTap: () {
-                          isloading ? loadingWidget() : null;
-                          _authcontroller.siginwithEmailandPassword(
-                              _emailController.text, _passwordcontroller.text);
-                        },
-                        text: "sign in"),
+                myButton(
+                    onTap: () {
+                      _authcontroller.siginwithEmailandPassword(
+                          _emailController.text, _passwordcontroller.text);
+                    },
+                    text: "sign in"),
 
                 const SizedBox(
                   height: 10,

@@ -107,15 +107,12 @@ class _registerPageState extends State<registerPage> {
               ),
               myButton(
                   onTap: () {
+                    _authcontroller.uploadUser(
+                        _fullnameController.text, _emailController.text);
                     _authcontroller.sigupwithEmailandPassword(
                         _emailController.text,
                         _passwordcontroller.text,
                         _fullnameController.text);
-                    // _authcontroller.isloading.value
-                    //     ? loadingWidget()
-                    //     : _authcontroller.createUser();
-                    // Get.offAll(const fingerPrint(),
-                    //     transition: Transition.rightToLeft);
                   },
                   text: "click to register"),
               const SizedBox(

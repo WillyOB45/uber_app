@@ -2,10 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
+// import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
-import 'package:uber_project/utilis/loading_widget.dart';
+// import 'package:uber_project/utilis/loading_widget.dart';
 
 class FirebaseController extends GetxController {
   // instance of auth
@@ -43,7 +44,7 @@ class FirebaseController extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        "fail to sign in, please check your creditenials ",
+        "fail to sign in, please check your creditenials and internet connection",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
@@ -88,13 +89,33 @@ class FirebaseController extends GetxController {
   // firebase reset password
   Future<void> resetPassword(String email) async {
     try {
-      isloading.value == true;
-      await _auth.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (error) {
-      Get.snackbar(
+      if (email.isNotEmpty) {
+        isLogin.value == true;
+        isloading.value == true;
+        await _auth.sendPasswordResetEmail(email: email);
+        Get.snackbar(
+            snackPosition: SnackPosition.BOTTOM,
+            'verification email sent!',
+            'please check your email');
+        Get.to(const signIn());
+      } else {
+        Get.snackbar(
+          "Error",
+          "fail to reset password, please check your email! ",
           snackPosition: SnackPosition.BOTTOM,
-          'user does not exit',
-          'please, check your details');
+          backgroundColor: Colors.black,
+          colorText: Colors.white,
+          forwardAnimationCurve: Curves.bounceIn,
+          duration: const Duration(seconds: 3),
+        );
+      }
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'user-not-found' || email.isEmpty) {
+        Get.snackbar(
+            snackPosition: SnackPosition.BOTTOM,
+            'user does not exit',
+            'please, check your details');
+      }
     } finally {
       isloading.value == false;
     }
@@ -106,15 +127,18 @@ class FirebaseController extends GetxController {
     Get.snackbar(
         snackPosition: SnackPosition.BOTTOM, 'log out successfully', '');
   }
+
+  // upload user details
+
+  Future<void> uploadUser(
+    String fullname,
+    String email,
+  ) async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final User = {
+      "fullname": fullname,
+      "email": email,
+    };
+    await firestore.collection("user").add(User);
+  }
 }
-
-// upload user details
-
-// Future<void> uploadUser() async {
-//   FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   try{
-//     _firestore.collection("user").doc(FirebaseAuth.instance.currentUser.uid).set({
-      
-//     })
-//   }
-// }
