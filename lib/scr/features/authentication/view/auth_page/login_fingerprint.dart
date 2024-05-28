@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
 
 class loginFingerprint extends StatefulWidget {
@@ -10,6 +11,7 @@ class loginFingerprint extends StatefulWidget {
 }
 
 class _loginFingerprintState extends State<loginFingerprint> {
+  final FirebaseController _controller = Get.put(FirebaseController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,33 +34,25 @@ class _loginFingerprintState extends State<loginFingerprint> {
             const SizedBox(
               height: 30,
             ),
-            GestureDetector(
-              onTap: () {
-                Get.defaultDialog(
-                    backgroundColor: Colors.grey.shade300,
-                    title: "scan your fingerprint",
-                    content: GestureDetector(
-                      onTap: () {
-                        Get.offAll(const homePage());
-                        Get.showSnackbar(GetSnackBar(
-                          duration: const Duration(seconds: 5),
-                          backgroundColor: Colors.grey.shade300,
-                          snackPosition: SnackPosition.BOTTOM,
-                          title: "",
-                          isDismissible: true,
-                          message: "",
-                          messageText: Text("login successfully!"),
-                        ));
-                      },
-                      child: const Icon(
-                        Icons.fingerprint,
-                        size: 70,
-                      ),
-                    ));
+            InkWell(
+              onTap: () async {
+                // final isAuthenticated = await _controller.localAuthenicated();
+                // if (isAuthenticated) {
+                //   Get.off(const homePage(), transition: Transition.rightToLeft);
+                // } else {
+                //   Get.snackbar(
+                //     "Error",
+                //     "fail to authenicate user",
+                //     snackPosition: SnackPosition.BOTTOM,
+                //     backgroundColor: Colors.black,
+                //     colorText: Colors.white,
+                //     forwardAnimationCurve: Curves.bounceIn,
+                //     duration: const Duration(seconds: 3),
+                //   );
+                // }
               },
               child: const Icon(
                 Icons.fingerprint,
-                color: Colors.white,
                 size: 100,
               ),
             )

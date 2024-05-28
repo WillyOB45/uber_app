@@ -32,7 +32,8 @@ class _homeMainState extends State<homeMain> {
                 child: Icon(Icons.camera_alt_outlined),
               ),
             ),
-            Text(user!.email.toString())
+            Text(user!.email.toString()),
+            Text(user!.displayName.toString())
           ],
         ),
       ),

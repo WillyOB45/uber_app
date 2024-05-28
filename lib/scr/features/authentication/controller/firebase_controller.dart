@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-// import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
+import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
 // import 'package:uber_project/utilis/loading_widget.dart';
+import "package:local_auth/local_auth.dart";
 
 class FirebaseController extends GetxController {
   // instance of auth
@@ -14,6 +16,7 @@ class FirebaseController extends GetxController {
 
   RxBool isloading = false.obs;
   RxBool isLogin = false.obs;
+  RxBool isAuthenticated = false.obs;
 
   @override
   void onInit() {
@@ -35,7 +38,7 @@ class FirebaseController extends GetxController {
       if (email.isNotEmpty && password.isNotEmpty) {
         isLogin.value = true;
 
-        Get.offAll(const homePage());
+        Get.offAll(const loginFingerprint());
         Get.snackbar(
             snackPosition: SnackPosition.BOTTOM, 'successfully log in', '');
       } else {
@@ -141,4 +144,16 @@ class FirebaseController extends GetxController {
     };
     await firestore.collection("user").add(User);
   }
+
+  // local auth
+  // Future<bool> localAuthenicated() async {
+  //   final LocalAuthentication _localauth = LocalAuthentication();
+  //  try{
+  //    final didAuthenticate = await _localauth.authenticate(
+  //     options: const AuthenticationOptions(biometricOnly: true),
+  //     localizedReason: "authenticate access to app",
+  //   );
+  //  } on PlatformException catch
+  
+  // }
 }
