@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/controller/firebase_controller.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
+import 'package:uber_project/scr/features/authentication/view/other_screens/home_pagemain.dart';
+import 'package:uber_project/utilis/loading_widget.dart';
 
 class loginFingerprint extends StatefulWidget {
   const loginFingerprint({super.key});
@@ -11,6 +13,7 @@ class loginFingerprint extends StatefulWidget {
 }
 
 class _loginFingerprintState extends State<loginFingerprint> {
+  bool isloading = false;
   final FirebaseController _controller = Get.put(FirebaseController());
   @override
   Widget build(BuildContext context) {
@@ -34,28 +37,18 @@ class _loginFingerprintState extends State<loginFingerprint> {
             const SizedBox(
               height: 30,
             ),
-            InkWell(
-              onTap: () async {
-                // final isAuthenticated = await _controller.localAuthenicated();
-                // if (isAuthenticated) {
-                //   Get.off(const homePage(), transition: Transition.rightToLeft);
-                // } else {
-                //   Get.snackbar(
-                //     "Error",
-                //     "fail to authenicate user",
-                //     snackPosition: SnackPosition.BOTTOM,
-                //     backgroundColor: Colors.black,
-                //     colorText: Colors.white,
-                //     forwardAnimationCurve: Curves.bounceIn,
-                //     duration: const Duration(seconds: 3),
-                //   );
-                // }
-              },
-              child: const Icon(
-                Icons.fingerprint,
-                size: 100,
-              ),
-            )
+            isloading == false
+                ? InkWell(
+                    onTap: () async {
+                      Get.to(const homePage());
+                    },
+                    child: const Icon(
+                      Icons.fingerprint,
+                      color: Colors.white,
+                      size: 100,
+                    ),
+                  )
+                : loadingWidget()
           ],
         ),
       ),

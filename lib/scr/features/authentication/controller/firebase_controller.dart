@@ -153,7 +153,7 @@ class FirebaseController extends GetxController {
   //     options: const AuthenticationOptions(biometricOnly: true),
   //     localizedReason: "authenticate access to app",
   //   );
-  //  } on PlatformException catch
-  
+  //  }
+
   // }
 }
