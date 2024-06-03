@@ -15,7 +15,7 @@ class _homePageState extends State<homePage> {
 
   // screens page
   final List<Widget> _screens = [
-    const homeMain(),
+    const HomeMain(),
     Container(
       color: Colors.green,
     ),

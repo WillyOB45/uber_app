@@ -1,42 +1,95 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class homeMain extends StatefulWidget {
-  const homeMain({super.key});
+class HomeMain extends StatefulWidget {
+  const HomeMain({super.key});
 
   @override
-  State<homeMain> createState() => _homeMainState();
+  State<HomeMain> createState() => _HomeMainState();
 }
 
-class _homeMainState extends State<homeMain> {
+class _HomeMainState extends State<HomeMain> {
   User? user = FirebaseAuth.instance.currentUser;
-  void _getfromcamera() async {
-    XFile? PickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200,
-            ),
-            GestureDetector(
-              onTap: () => _getfromcamera(),
-              child: CircleAvatar(
-                child: Icon(Icons.camera_alt_outlined),
+      body: SafeArea(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+
+          // customize appbar
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.sort,
+                    size: 40,
+                    color: Colors.grey.shade900,
+                  )),
+              const SizedBox(
+                width: 250,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey.shade900),
+                  child: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+
+          //greeting pleasaries
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              color: Colors.amber,
+              // alignment: Alignment.topLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hello,",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 10,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    user!.email.toString(),
+                    style: TextStyle(
+                        color: Colors.grey.shade900,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
-            Text(user!.email.toString()),
-            Text(user!.displayName.toString())
-          ],
-        ),
-      ),
+          )
+        ],
+      )),
     );
   }
 }

@@ -77,7 +77,7 @@ class FirebaseController extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        "fail to sign in, please check your creditenials ",
+        "fail to sign in, please check your creditenials and internet connection ",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         colorText: Colors.white,
@@ -97,9 +97,14 @@ class FirebaseController extends GetxController {
         isloading.value == true;
         await _auth.sendPasswordResetEmail(email: email);
         Get.snackbar(
-            snackPosition: SnackPosition.BOTTOM,
-            'verification email sent!',
-            'please check your email');
+          "reset password link sent!",
+          "please, check your email ",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black,
+          colorText: Colors.white,
+          forwardAnimationCurve: Curves.bounceIn,
+          duration: const Duration(seconds: 3),
+        );
         Get.to(const signIn());
       } else {
         Get.snackbar(
