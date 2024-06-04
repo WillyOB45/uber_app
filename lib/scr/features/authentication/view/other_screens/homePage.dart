@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/home_pagemain.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/settings.dart';
+import 'package:uber_project/widgets/my_drawer.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -33,6 +34,7 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
+      // drawer: const MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           onTap: (index) => bottomNavBar(index),

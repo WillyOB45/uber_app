@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uber_project/widgets/my_drawer.dart';
 
 class HomeMain extends StatefulWidget {
   const HomeMain({super.key});
@@ -13,6 +14,7 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MyDrawer(),
       backgroundColor: Colors.grey.shade300,
       body: SafeArea(
           child: Column(
@@ -26,13 +28,19 @@ class _HomeMainState extends State<HomeMain> {
           // customize appbar
           Row(
             children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.sort,
-                    size: 40,
-                    color: Colors.grey.shade900,
-                  )),
+              Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      setState(() {
+                        Scaffold.of(context).openDrawer();
+                      });
+                    },
+                    icon: Icon(
+                      Icons.sort,
+                      size: 40,
+                      color: Colors.grey.shade900,
+                    ));
+              }),
               const SizedBox(
                 width: 270,
               ),
@@ -100,6 +108,9 @@ class _HomeMainState extends State<HomeMain> {
                       color: Colors.grey.shade900,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
               ],
             ),
