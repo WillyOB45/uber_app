@@ -17,6 +17,7 @@ class _HomeMainState extends State<HomeMain> {
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 20,
@@ -33,7 +34,7 @@ class _HomeMainState extends State<HomeMain> {
                     color: Colors.grey.shade900,
                   )),
               const SizedBox(
-                width: 250,
+                width: 270,
               ),
               GestureDetector(
                 onTap: () {},
@@ -59,33 +60,48 @@ class _HomeMainState extends State<HomeMain> {
           //greeting pleasaries
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Container(
-              color: Colors.amber,
-              // alignment: Alignment.topLeft,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hello,",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: Colors.grey.shade700,
-                      fontSize: 10,
-                    ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Where do you want to go",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 15,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    user!.email.toString(),
-                    style: TextStyle(
-                        color: Colors.grey.shade900,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  user!.email.toString(),
+                  style: TextStyle(
+                      color: Colors.grey.shade900,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 200,
+                  width: 500,
+                  color: Colors.grey.shade900,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Cars's Available Nearby You",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.grey.shade900,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           )
         ],

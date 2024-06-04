@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/login_fingerprint.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uber_project/scr/features/authentication/view/auth_page/sigin_page.dart';
 import 'package:uber_project/scr/features/authentication/view/other_screens/homePage.dart';
 // import 'package:uber_project/utilis/loading_widget.dart';
-import "package:local_auth/local_auth.dart";
+// import "package:local_auth/local_auth.dart";
 
 class FirebaseController extends GetxController {
   // instance of auth
