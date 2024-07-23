@@ -114,7 +114,7 @@ class _registerPageState extends State<registerPage> {
                         _passwordcontroller.text,
                         _fullnameController.text);
                   },
-                  text: "click to register"),
+                  text: "Sign Up"),
               const SizedBox(
                 height: 10,
               ),

@@ -25,7 +25,7 @@ class _splashScreenState extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey.shade900,
       body: Center(
         // app name
         child: AnimatedTextKit(repeatForever: true, animatedTexts: [

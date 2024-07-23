@@ -129,7 +129,7 @@ class _signInState extends State<signIn> {
                       _authcontroller.siginwithEmailandPassword(
                           _emailController.text, _passwordcontroller.text);
                     },
-                    text: "sign in"),
+                    text: "Sign In"),
 
                 const SizedBox(
                   height: 10,

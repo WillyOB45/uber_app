@@ -52,10 +52,30 @@ class _HomeMainState extends State<HomeMain> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey.shade900),
-                  child: const Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 30,
+                  child: Stack(
+                    children: [
+                      const Positioned(
+                        top: 5,
+                        right: 5,
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      Positioned(
+                          top: 25,
+                          right: 2,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade300),
+                            child: const Icon(
+                              Icons.add,
+                              size: 15,
+                            ),
+                          ))
+                    ],
                   ),
                 ),
               )
@@ -109,12 +129,12 @@ class _HomeMainState extends State<HomeMain> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 30,
+          ),
         ],
       )),
     );

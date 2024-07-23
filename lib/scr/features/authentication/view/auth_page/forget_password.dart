@@ -110,7 +110,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   onTap: () {
                     _controller.resetPassword(_emailController.text);
                   },
-                  text: "send"),
+                  text: "Send"),
               const SizedBox(
                 height: 10,
               ),
